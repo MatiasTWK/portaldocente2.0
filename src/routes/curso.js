@@ -1,10 +1,10 @@
 const express = require('express');
 const cursoSchema = require('../models/cursos');
-
 const router = express.Router();
+const { validateCreate } = require('../validators/user');
 
 //AÑADIR UN CURSO
-router.post('/cursos', (req, res) => {
+router.post('/cursos', validateCreate, (req, res) => {
     const curso = cursoSchema(req.body);
     curso
         .save()
